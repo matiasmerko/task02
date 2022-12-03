@@ -19,9 +19,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       - name: Pushing to Github Packages
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v3
         with: 
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: ${{ github.repository }}
