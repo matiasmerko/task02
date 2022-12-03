@@ -1,0 +1,26 @@
+name: Matias Merko package
+
+on: push
+
+jobs: 
+  shellcheck:
+    - name: shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout
+      uses: ludeeus/action-shellcheck@master
+      with:
+       scandir: '.' 
+  build:
+    name: Build script container image
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Pushing to Github Packages
+        uses: docker/build-push-action@v1
+        with: 
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: ${{ github.repository }}
