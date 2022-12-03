@@ -4,13 +4,14 @@ on: push
 
 jobs: 
   shellcheck:
-    - name: shellcheck
+    name: shellcheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
-      uses: ludeeus/action-shellcheck@master
-      with:
-       scandir: '.' 
+      - uses: actions/checkout@v3
+      - name: Running Shell check
+        uses: ludeeus/action-shellcheck@master
+        with:
+        scandir: '.' 
   build:
     name: Build script container image
     runs-on: ubuntu-latest  
